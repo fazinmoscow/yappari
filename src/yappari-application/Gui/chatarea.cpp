@@ -39,6 +39,7 @@
 #include "chattextitem.h"
 #include "client.h"
 #include "chatarea.h"
+#include "messageinfowindow.h"
 
 #include "Whatsapp/util/datetimeutilities.h"
 #include "Whatsapp/util/utilities.h"
@@ -348,6 +349,7 @@ void ChatArea::contextMenu(QPoint p, QObject *obj)
     QAction *copy = new QAction("Copy",this);
     QAction *forward = new QAction("Forward", this);
     QAction *deletemsg = new QAction("Delete", this);
+    QAction *infomsg = new QAction("Info", this);
     QAction *browser = new QAction("Open in browser", this);
 
     if (obj->objectName() == "ChatTextItem")
@@ -355,6 +357,7 @@ void ChatArea::contextMenu(QPoint p, QObject *obj)
 
     menu->addAction(forward);
     menu->addAction(deletemsg);
+    menu->addAction(infomsg);
 
     if (obj->objectName() == "ChatImageItem")
     {
@@ -424,5 +427,27 @@ void ChatArea::contextMenu(QPoint p, QObject *obj)
         }
         emit deleteMessage(msg);
     }
+    else if (action == infomsg)
+    {
+        FMessage msg;
+        ChatTextItem *item = (ChatTextItem *) obj;
+        if (obj->objectName() == "ChatTextItem")
+        {
+            ChatTextItem *item = (ChatTextItem *) obj;
+            msg = item->getMessage();
+        }
+        else if (obj->objectName() == "ChatImageItem")
+        {
+            ChatImageItem *item = (ChatImageItem *) obj;
+            msg = item->getMessage();
+        }
+
+        MessageInfoWindow *messageInfoWindow = new MessageInfoWindow(msg, this);
+        messageInfoWindow->setAttribute(Qt::WA_Maemo5StackedWindow);
+        messageInfoWindow->setAttribute(Qt::WA_DeleteOnClose);
+        messageInfoWindow->setWindowFlags(messageInfoWindow->windowFlags() | Qt::Window);
+        messageInfoWindow->show();
+    }
+
     Utilities::logData("Exit Menu");
 }

@@ -142,6 +142,7 @@ SOURCES += main.cpp \
     Gui/groupparticipantitem.cpp \
     Gui/groupparticipantdelegate.cpp \
     Gui/groupinfowindow.cpp \
+    Gui/messageinfowindow.cpp \
     Gui/groupsubjectwindow.cpp \
     Gui/blockedcontactswindow.cpp \
     Multimedia/audioplayer.cpp \
@@ -261,6 +262,7 @@ HEADERS += \
     Gui/groupparticipantitem.h \
     Gui/groupparticipantdelegate.h \
     Gui/groupinfowindow.h \
+    Gui/messageinfowindow.h \
     Gui/groupsubjectwindow.h \
     Gui/blockedcontactswindow.h \
     Multimedia/audioplayer.h \
@@ -300,6 +302,7 @@ FORMS += \
     Gui/ui/creategroupwindow.ui \
     Gui/ui/selectgroupparticipantswindow.ui \
     Gui/ui/groupinfowindow.ui \
+    Gui/ui/messageinfowindow.ui \
     Gui/ui/groupsubjectwindow.ui \
     Gui/ui/blockedcontactswindow.ui
 
